@@ -1,0 +1,36 @@
+doctype html
+
+title Spark
+
+meta(charset='utf-8')
+meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover')
+link(rel='stylesheet', href='style.css')
+meta(name='theme-color', content='#375a7f')
+
+if process.env.BUILD_TARGET == 'web'
+  meta(name='access-key', content=(settings ? settings.accessKey : '{{accessKey}}'))
+  link(rel='manifest', href='manifest-'+(settings ? settings.manifestKey : '{{manifestKey}}')+'/manifest.json')
+
+if process.env.BUILD_TARGET != 'web'
+  //- in web environment, this is set using an HTTP header instead of a meta tag
+  //- unsafe-eval is only required for instascan, which is not used in cordova builds
+  - unsafeEval = process.env.BUILD_TARGET !== 'cordova' ? "script-src 'self' 'unsafe-eval'; " : ''
+  meta(http-equiv='Content-Security-Policy', content=unsafeEval+"default-src 'self' gap:; font-src 'self' data:; img-src 'self' data:; connect-src *")
+
+body(class='build-'+process.env.BUILD_TARGET)
+
+  #app: .loading
+    nav.navbar.navbar-dark.bg-primary.mb-3: .container: span.navbar-brand Spark
+    #loader
+
+  script(src='load-theme.js')
+
+  script(src=bundle || 'app.js', defer)
+
+  if process.env.BUILD_TARGET == 'cordova'
+    script(src='cordova.js', defer)
+
+  if process.env.BUILD_TARGET == 'web'
+    noscript
+      link(rel='stylesheet', href='noscript.css')
+      p Spark requires JavaScript to be turned on.

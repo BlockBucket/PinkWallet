@@ -1,0 +1,64 @@
+{
+  "name": "spark-wallet",
+  "version": "0.2.17",
+  "androidVer": 219,
+  "description": "A minimalistic wallet GUI for c-lightning",
+  "bin": "dist/cli.js",
+  "scripts": {
+    "start": "./scripts/start.sh",
+    "prepublishOnly": "npm run dist:npm",
+    "dist:npm": "./scripts/build.sh",
+    "dist:cordova": "cd cordova && npm run dist --",
+    "dist:electron": "cd electron && npm run dist --",
+    "release": "./scripts/release.sh"
+  },
+  "repository": "https://github.com/shesek/spark-wallet",
+  "files": [
+    "dist",
+    "npm-shrinkwrap.json"
+  ],
+  "keywords": [
+    "bitcoin",
+    "lightning",
+    "wallet",
+    "lightning-wallet",
+    "lightning-network",
+    "c-lightning"
+  ],
+  "author": "Nadav Ivgi",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.11.5",
+    "basic-auth": "^2.0.1",
+    "body-parser": "^1.19.0",
+    "clightning-client": "^0.1.2",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "helmet": "^4.1.0",
+    "ini": "^1.3.5",
+    "is-ip": "^3.1.0",
+    "meow": "^5.0.0",
+    "mkdirp": "^1.0.4",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.1.12",
+    "qrcode": "^1.4.4",
+    "superagent": "^6.1.0",
+    "superagent-proxy": "github:shesek/superagent-proxy#b512f8bbcf1baa196058922ee3b6cfe45375ebc9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5"
+  },
+  "optionalDependencies": {
+    "greenlock": "^2.3.8",
+    "node-forge": "^0.7.5",
+    "qrcode-terminal": "^0.12.0",
+    "selfsigned": "^1.10.2"
+  }
+}

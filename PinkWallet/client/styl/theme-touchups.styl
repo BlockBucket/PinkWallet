@@ -1,0 +1,81 @@
+// fix icon position
+.theme-slate  .navbar-brand .icon { left: -2px }
+.theme-slate  .navbar-brand .icon:before { vertical-align: baseline }
+.theme-lux    .navbar-brand .icon:before { vertical-align: text-top }
+.theme-cosmo  .navbar-brand .icon:before { vertical-align: text-top }
+
+// slate touchups
+.theme-slate
+  .navbar-brand
+    border-right 0
+  .input-group-text
+    padding 0.65rem 1rem
+
+// cyborg touchups
+.theme-cyborg
+  .input-group-text { color: #fff }
+
+// dark touchups
+.theme-dark
+  .alert
+     border none
+  .list-group-item, .list-group-item-action:hover, .list-group-item-action:focus
+    color #fff
+
+// channel bar adjustments
+.theme-cosmo, .theme-cyborg
+  .channel-bar, .channel-bar .progress-bar
+    font-size 0.9em
+
+// dark/yeti touchups (dark is based on yeti)
+.theme-dark, .theme-yeti
+  // make amount badges more readable, the default weight is too thin
+  .feed .badge.amt
+    font-weight normal
+  .feed .badge:not(.badge-pill)
+    padding-left 0.6em
+    padding-right 0.6em
+  .channels .state
+    font-weight normal
+
+// these themes have space for a larger timestamp
+.theme-yeti, .theme-dark, .theme-materia, .theme-lumen
+  .feed .badge.ts
+    font-size 100%
+    margin-top 0
+
+.theme-simplex .fancy-checkbox .btn
+  box-shadow none !important
+
+// explicitly style .main-bg with the theme's main background color
+// when scanning QRs, so that it covers the QR video
+body.qr-scanning
+  .main-bg { background: #fff }
+  .theme-dark .main-bg { background: #222 }
+  .theme-simplex .main-bg { background: #FCFCFC }
+  .theme-slate .main-bg { background: #272B30 }
+  .theme-solar .main-bg { background: #002B36 }
+  .theme-superhero .main-bg { background: #2B3E50 }
+  .theme-cyborg .main-bg { background: #060606 }
+
+// explicitly set the main container background color to fix a strange chrome rendering bug
+body:not(.qr-scanning)
+  .theme-dark { background: #222 }
+  .theme-simplex { background: #FCFCFC }
+  .theme-slate { background: #272B30 }
+  .theme-solar { background: #002B36 }
+  .theme-superhero { background: #2B3E50 }
+  .theme-cyborg { background: #060606 }
+
+// explicitly override hovered/focused/active list-group-item styles
+.feed .list-group-item
+  &.active
+    .theme-cyborg & { background: #2A9FD6 }
+    .theme-slate & { background: #3e444c }
+
+  @media (hover:none)
+    &:hover:not(.active)
+      .theme-superhero & { background: #4E5D6C }
+      .theme-cyborg & { background: #222  }
+      .theme-dark & { background: #303030  }
+      .theme-slate & { background: #32383e }

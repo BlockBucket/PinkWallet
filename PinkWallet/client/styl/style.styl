@@ -1,0 +1,205 @@
+support-for-ie = false
+vendor-prefixes = webkit moz o official
+
+@import 'nib'
+@import 'loader'
+@import 'icons'
+@import 'scrollbar'
+@import 'theme-touchups'
+@import 'qr'
+@import 'channels'
+@import 'fancy-checkbox'
+
+html
+  touch-action manipulation
+
+// avoid FOUC before bootstrap loads
+// (this is later overridden by bootstraps css)
+body
+  font-size 0px
+
+.btn, .form-control, .row
+  display none
+
+// Disable dotted outline on mobile
+a:focus, .btn:focus
+  outline 0
+
+// Layout
+html, body, #app
+  height 100%
+
+#app > .flex-column
+  min-height 100%
+
+// Enlarge base document rem to fill up large displays
+html
+  @media (min-height: 600px)
+
+    @media (min-width: 530px)
+      font-size 1.25rem
+
+    @media (min-width: 576px)
+      font-size 1.3rem
+
+    @media (min-width: 768px)
+      font-size 1.5rem
+
+    @media (min-width: 992px)
+      font-size 1.5rem
+
+      .container
+        max-width 960px
+
+// Header, content & footer
+.navbar-brand
+  position relative
+
+  .icon
+    position absolute
+    left -1.3rem
+
+    &:before
+      vertical-align middle
+
+  .toggle-unit
+    cursor pointer
+
+.content
+  flex 1
+  position relative
+  overflow-x hidden
+
+#app footer
+  font-size 65%
+  margin-top 1rem
+  margin-bottom 0.5rem
+  padding-top 0.5rem
+  padding-bottom env(safe-area-inset-bottom)
+
+  p
+    margin-bottom 0
+
+// Helpers
+.flex-grow
+  flex 1
+
+.break-all
+  word-wrap break-word
+  word-break break-all
+
+.break-word
+  word-wrap break-word
+  word-break break-word
+
+// Component
+.alert
+  font-size 0.9rem
+  font-weight 400
+  word-break break-word
+
+.btn-link
+  cursor pointer
+
+.form-buttons
+  margin-top 2rem
+  margin-bottom 1rem
+
+// Homepage feed & channels list
+.list-group
+  .list-group-item
+    // originally 0.75rem, some is removed to make room for the badge margin
+    padding-bottom 0.25rem
+
+  .list-group-item:not(.active)
+    // disable bg hover effect on touch devices, they get stuck in hover state
+    @media (hover:none)
+      &:hover
+        background inherit
+    // disable focus/active effects entirely, they're not needed here
+    &:focus, &:active
+      background inherit
+
+  .badge
+    margin-bottom 0.5rem
+
+  .list-group-item ul li
+    margin-bottom 0.5rem
+
+    &:last-child
+      margin-bottom 0
+
+    small
+      font-weight inherit
+    pre
+      color inherit !important
+
+  .badge.amt
+    font-size 100%
+
+  .badge.float-right
+    margin-top 0.19rem
+
+    @media (min-width: 440px)
+      font-size 100%
+      margin-top 0
+
+// Homepage balance overview
+.balance-overview
+  .row > :nth-child(2)::before
+    content '+'
+    position absolute
+    left 0
+    margin-left -0.25em
+    font-weight 300
+    color var(--gray)
+
+// Confirm outgoing payments
+.conf-pay
+  h2
+    margin-bottom 1rem
+  p
+    font-size 1.171875rem
+  .col-form-label
+    padding-top 0
+
+// Receive lightning & onchain deposit
+.waiting-payment, .onchain-deposit
+
+  img.qr
+    width 100%
+    max-width 300px
+
+  h2
+    margin-top 1rem
+    margin-bottom 1rem
+
+  @media (min-width: 576px) and (max-width: 767.98px)
+    h2
+      font-size 25px
+    h3
+      font-size 21px
+    small
+      font-size 12px
+
+  @media (min-width: 768px) and (max-width: 991.98px)
+    h2
+      font-size 34px
+    h3
+      font-size 26px
+    small
+      font-size 15px
+
+  @media (min-width: 992px)
+    h2
+      font-size 45px
+    h3
+      font-size 35px
+    small
+      font-size 18px
+
+// Logs
+.logs
+  white-space pre-line
+  font-size 90%
+
